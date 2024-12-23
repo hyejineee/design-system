@@ -151,6 +151,9 @@ importers:
       '@eslint/js':
         specifier: ^9.15.0
         version: 9.15.0
+      '@repo/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
       '@storybook/addon-essentials':
         specifier: ^8.4.7
         version: 8.4.7(@types/react@18.3.17)(storybook@8.4.7(prettier@3.3.3))
