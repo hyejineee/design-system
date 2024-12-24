@@ -222,7 +222,7 @@ export const color: Colors = {
 const getPalettesColor = (colorToken: string | null, palettes: Palettes) => {
   if (!colorToken) return undefined;
   const [palette, shade] = colorToken.split('.');
-  return palettes[palette as keyof Palettes]?.
+  return palettes[palette as keyof Palettes]?.[shade];
 };
 
 export const createColorProperties = () => {};
