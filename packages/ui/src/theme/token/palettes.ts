@@ -1,4 +1,4 @@
-import type { Palettes } from '../../types/token/color';
+import type { Palettes } from '@ui/types/token';
 
 const brand: Palettes['brand'] = {
   50: '',

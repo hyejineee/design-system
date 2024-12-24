@@ -1,4 +1,4 @@
-import type { Colors } from '../../types/token/color';
+import type { Colors, Palettes } from '@ui/types/token';
 
 const bg: Colors['bg'] = {
   primary: {
@@ -218,3 +218,11 @@ export const color: Colors = {
   surface,
   overlay,
 };
+
+const getPalettesColor = (colorToken: string | null, palettes: Palettes) => {
+  if (!colorToken) return undefined;
+  const [palette, shade] = colorToken.split('.');
+  return palettes[palette as keyof Palettes]?.
+};
+
+export const createColorProperties = () => {};

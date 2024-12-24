@@ -7,4 +7,9 @@ type TypoLineHeightKey = TypoKey;
 export interface TypoLineHeightType extends Record<TypoLineHeightKey, string> {}
 
 export type TypoUnit = `${TypoKey}.${TypoWeightKey}`;
-export interface Typo {}
+type TypoType = {
+  fontSize: string;
+  lineHeight: string;
+  fontWeight: string;
+};
+export interface Typo extends Record<TypoKey, TypoType> {}

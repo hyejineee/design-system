@@ -20,7 +20,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@ui/types/*": ["types/*"],
+      "@ui/theme/*": ["theme/*"],
+      "@ui/system/*": ["system/*"],
+      "@ui/util/*": ["util/*"]
+    }
   },
   "include": ["src"]
 }

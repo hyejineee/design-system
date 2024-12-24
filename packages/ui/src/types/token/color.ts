@@ -18,7 +18,7 @@ type HexColorKey = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'l
 export interface HexColorType extends Record<HexColorKey, string> {}
 
 export interface Palettes extends Record<PrimitiveColorKey, HexColorType> {}
-type PrimitiveColorUnit = `${PrimitiveColorKey}.${keyof HexColorType}`;
+type PrimitiveColorUnit = `${PrimitiveColorKey}.${keyof HexColorType}` | null;
 
 type SemanticTokenKey = 'content' | 'bg' | 'border' | 'surface' | 'overlay';
 

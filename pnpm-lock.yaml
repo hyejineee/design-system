@@ -138,6 +138,12 @@ importers:
 
   packages/ui:
     dependencies:
+      '@vanilla-extract/css':
+        specifier: ^1.17.0
+        version: 1.17.0
+      '@vanilla-extract/sprinkles':
+        specifier: ^1.6.3
+        version: 1.6.3(@vanilla-extract/css@1.17.0)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -181,6 +187,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.1
         version: 18.3.1
+      '@vanilla-extract/vite-plugin':
+        specifier: ^4.0.19
+        version: 4.0.19(@types/node@20.17.6)(terser@5.37.0)(vite@6.0.3(@types/node@20.17.6)(terser@5.37.0))
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.3.4(vite@6.0.3(@types/node@20.17.6)(terser@5.37.0))
@@ -211,6 +220,9 @@ importers:
       vite:
         specifier: ^6.0.1
         version: 6.0.3(@types/node@20.17.6)(terser@5.37.0)
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@5.6.3)(vite@6.0.3(@types/node@20.17.6)(terser@5.37.0))
 
 packages:
 
@@ -1424,11 +1436,20 @@ packages:
   '@vanilla-extract/babel-plugin-debug-ids@1.1.0':
     resolution: {integrity: sha512-Zy9bKjaL2P5zsrFYQJ8IjWGlFODmZrpvFmjFE0Zv8om55Pz1JtpJtL6DvlxlWUxbVaP1HKCqsmEfFOZN8fX/ZQ==}
 
+  '@vanilla-extract/babel-plugin-debug-ids@1.2.0':
+    resolution: {integrity: sha512-z5nx2QBnOhvmlmBKeRX5sPVLz437wV30u+GJL+Hzj1rGiJYVNvgIIlzUpRNjVQ0MgAgiQIqIUbqPnmMc6HmDlQ==}
+
   '@vanilla-extract/css@1.16.1':
     resolution: {integrity: sha512-3jKxH5ty/ZjmGoLAx8liY7e87FRCIJfnuufX/K9fQklu0YHP3ClrNisU++LkZuD+GZleqMSAQMF0r8Otln+OPQ==}
 
+  '@vanilla-extract/css@1.17.0':
+    resolution: {integrity: sha512-W6FqVFDD+C71ZlKsuj0MxOXSvHb1tvQ9h/+79aYfi097wLsALrnnBzd0by8C///iurrpQ3S+SH74lXd7Lr9MvA==}
+
   '@vanilla-extract/integration@7.1.11':
     resolution: {integrity: sha512-IGRaLrpkjyVHTHDZQBQvFBl399yRfSMJoVI2KaocEZB33aP+H4Qup83od2hc6R5IxGWdvbiiCOJCYsnmFiy85Q==}
+
+  '@vanilla-extract/integration@7.1.12':
+    resolution: {integrity: sha512-71HFjnfL7qXM3hqyk7z9c8zrudfO9Sut6IhSmH8IKwmLk/tIMFIL86L6nYpItfUFUa/mrER6YUQPp/SfwjRvkw==}
 
   '@vanilla-extract/next-plugin@2.4.7':
     resolution: {integrity: sha512-J8ROSZ3NmGNqxMzI+j4s6TlqUN3/eG/6ihvrjvfILAsPhpDFQ1liGka85gA1rbFcW7CKDDzysgI0tiFf0oLXzA==}
@@ -1437,6 +1458,16 @@ packages:
 
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
+
+  '@vanilla-extract/sprinkles@1.6.3':
+    resolution: {integrity: sha512-oCHlQeYOBIJIA2yWy2GnY5wE2A7hGHDyJplJo4lb+KEIBcJWRnDJDg8ywDwQS5VfWJrBBO3drzYZPFpWQjAMiQ==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
+
+  '@vanilla-extract/vite-plugin@4.0.19':
+    resolution: {integrity: sha512-NtE/sAIesCAu+6JHlanLgmfDJn/cqG8dfElfh5n1PvG2LTSMVMQhVbDefxcVhGjw1lt5QbG+u3dpZMY7KPwJhw==}
+    peerDependencies:
+      vite: ^4.0.3 || ^5.0.0
 
   '@vanilla-extract/webpack-plugin@2.3.15':
     resolution: {integrity: sha512-xU809X84B1B1MoHAHm6hg7PjdPTCz+mVElfEMrA5g0PzvF+PsyfDoqQpPBZjCNvu/DZ7pVhG/qefD0p4ZJ5+Ag==}
@@ -2151,6 +2182,9 @@ packages:
   globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
+
+  globrex@0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
@@ -2960,6 +2994,16 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
+  tsconfck@3.1.4:
+    resolution: {integrity: sha512-kdqWFGVJqe+KGYvlSO9NIaWn9jT1Ny4oKVzAJsKii5eoE9snzTJzL4+MMVOMn+fikWGFmKEylcXL710V/kIPJQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
@@ -3085,6 +3129,14 @@ packages:
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-tsconfig-paths@5.1.4:
+    resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
+    peerDependencies:
+      vite: '*'
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   vite@5.4.11:
     resolution: {integrity: sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==}
@@ -4335,7 +4387,30 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@vanilla-extract/babel-plugin-debug-ids@1.2.0':
+    dependencies:
+      '@babel/core': 7.26.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@vanilla-extract/css@1.16.1':
+    dependencies:
+      '@emotion/hash': 0.9.2
+      '@vanilla-extract/private': 1.0.6
+      css-what: 6.1.0
+      cssesc: 3.0.0
+      csstype: 3.1.3
+      dedent: 1.5.3
+      deep-object-diff: 1.1.9
+      deepmerge: 4.3.1
+      lru-cache: 10.4.3
+      media-query-parser: 2.0.2
+      modern-ahocorasick: 1.1.0
+      picocolors: 1.1.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+
+  '@vanilla-extract/css@1.17.0':
     dependencies:
       '@emotion/hash': 0.9.2
       '@vanilla-extract/private': 1.0.6
@@ -4378,6 +4453,32 @@ snapshots:
       - supports-color
       - terser
 
+  '@vanilla-extract/integration@7.1.12(@types/node@20.17.6)(terser@5.37.0)':
+    dependencies:
+      '@babel/core': 7.26.0
+      '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.0)
+      '@vanilla-extract/babel-plugin-debug-ids': 1.2.0
+      '@vanilla-extract/css': 1.17.0
+      dedent: 1.5.3
+      esbuild: 0.23.1
+      eval: 0.1.8
+      find-up: 5.0.0
+      javascript-stringify: 2.1.0
+      mlly: 1.7.3
+      vite: 5.4.11(@types/node@20.17.6)(terser@5.37.0)
+      vite-node: 1.6.0(@types/node@20.17.6)(terser@5.37.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
   '@vanilla-extract/next-plugin@2.4.7(@types/node@20.17.6)(next@15.1.0(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(webpack@5.97.1)':
     dependencies:
       '@vanilla-extract/webpack-plugin': 2.3.15(@types/node@20.17.6)(terser@5.37.0)(webpack@5.97.1)
@@ -4396,6 +4497,26 @@ snapshots:
       - webpack
 
   '@vanilla-extract/private@1.0.6': {}
+
+  '@vanilla-extract/sprinkles@1.6.3(@vanilla-extract/css@1.17.0)':
+    dependencies:
+      '@vanilla-extract/css': 1.17.0
+
+  '@vanilla-extract/vite-plugin@4.0.19(@types/node@20.17.6)(terser@5.37.0)(vite@6.0.3(@types/node@20.17.6)(terser@5.37.0))':
+    dependencies:
+      '@vanilla-extract/integration': 7.1.12(@types/node@20.17.6)(terser@5.37.0)
+      vite: 6.0.3(@types/node@20.17.6)(terser@5.37.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
 
   '@vanilla-extract/webpack-plugin@2.3.15(@types/node@20.17.6)(terser@5.37.0)(webpack@5.97.1)':
     dependencies:
@@ -5321,6 +5442,8 @@ snapshots:
       define-properties: 1.2.1
       gopd: 1.0.1
 
+  globrex@0.1.2: {}
+
   gopd@1.0.1:
     dependencies:
       get-intrinsic: 1.2.4
@@ -6161,6 +6284,10 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
+  tsconfck@3.1.4(typescript@5.6.3):
+    optionalDependencies:
+      typescript: 5.6.3
+
   tsconfig-paths@4.2.0:
     dependencies:
       json5: 2.2.3
@@ -6318,6 +6445,17 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-tsconfig-paths@5.1.4(typescript@5.6.3)(vite@6.0.3(@types/node@20.17.6)(terser@5.37.0)):
+    dependencies:
+      debug: 4.3.7
+      globrex: 0.1.2
+      tsconfck: 3.1.4(typescript@5.6.3)
+    optionalDependencies:
+      vite: 6.0.3(@types/node@20.17.6)(terser@5.37.0)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   vite@5.4.11(@types/node@20.17.6)(terser@5.37.0):
     dependencies:
