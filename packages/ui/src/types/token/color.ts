@@ -5,7 +5,7 @@
 
 import type { CSSProperties } from 'react';
 
-type PrimitiveColorKey =
+export type PrimitiveColorKey =
   | 'brand'
   | 'brandSubtle'
   | 'gray'
@@ -14,15 +14,29 @@ type PrimitiveColorKey =
   | 'teal'
   | 'green'
   | 'blue';
-type HexColorKey = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'light' | 'dark';
+
+export type HexColorKey =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | 'light'
+  | 'dark';
+
 export interface HexColorType extends Record<HexColorKey, string> {}
 
 export interface Palettes extends Record<PrimitiveColorKey, HexColorType> {}
-type PrimitiveColorUnit = `${PrimitiveColorKey}.${keyof HexColorType}` | null;
+export type PrimitiveColorUnit = `${PrimitiveColorKey}.${keyof HexColorType}`;
 
 type SemanticTokenKey = 'content' | 'bg' | 'border' | 'surface' | 'overlay';
 
-type InteractStatusKey = 'hover' | 'active' | 'pressed';
+type InteractStatusKey = 'default' | 'hover' | 'pressed';
 export interface InteractType extends Record<InteractStatusKey, PrimitiveColorUnit> {}
 type InteractUnit = `interact.${InteractStatusKey}`;
 
@@ -40,7 +54,9 @@ export interface MainSemanticColorType
 export interface SubSemanticColorType
   extends Record<
     SubSemanticColorKey,
-    Record<Exclude<StatusKey, 'interact'>, PrimitiveColorUnit> & { interact: InteractType }
+    Record<Exclude<StatusKey, 'interact' | 'inverse'>, PrimitiveColorUnit> & {
+      interact: InteractType;
+    }
   > {}
 type DisabledColorType = {
   disable: PrimitiveColorUnit;
@@ -56,14 +72,22 @@ export interface SemanticColorType
   extends MainSemanticColorType,
     SubSemanticColorType,
     DisabledColorType {}
-type SemanticColorSubUnit =
+
+export type SemanticColorSubUnit =
   | `${MainSemanticColorKey}.${Exclude<StatusKey, 'interact'> | InteractUnit}`
   | `${SubSemanticColorKey}.${Exclude<StatusKeyWithoutInverse, 'interact'> | InteractUnit}`
-  | 'disable'
+  | 'disable';
+
+export type ContentPath = `content.${SemanticColorSubUnit}`;
+export type BgPath = `bg.${SemanticColorSubUnit}`;
+export type BorderPath = `border.${SemanticColorSubUnit}`;
+
+export type SemanticColorUnit =
+  | ContentPath
+  | BgPath
+  | BorderPath
   | `surface.${SurfaceKey}`
   | `overlay.${OverlayKey}`;
-
-export type SemanticColorUnit = `${SemanticTokenKey}.${SemanticColorSubUnit}`;
 
 type ColorType = Record<Exclude<SemanticTokenKey, 'surface' | 'overlay'>, SemanticColorType> & {
   surface: SurfaceType;

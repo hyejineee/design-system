@@ -1,3 +1,3 @@
-export * from './colors';
+export * from './color';
 export * from './palettes';
 export * from './space';

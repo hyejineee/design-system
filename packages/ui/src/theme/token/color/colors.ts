@@ -1,4 +1,4 @@
-import type { Colors, Palettes } from '@ui/types/token';
+import type { Colors } from '@ui/types/token';
 
 const bg: Colors['bg'] = {
   primary: {
@@ -7,8 +7,8 @@ const bg: Colors['bg'] = {
     subtle: 'brand.700',
     interact: {
       hover: 'brand.800',
-      active: 'brand.900',
       pressed: 'brand.900',
+      default: 'brand.500',
     },
   },
   secondary: {
@@ -17,8 +17,8 @@ const bg: Colors['bg'] = {
     subtle: 'brandSubtle.700',
     interact: {
       hover: 'brandSubtle.800',
-      active: 'brandSubtle.900',
       pressed: 'brandSubtle.900',
+      default: 'brandSubtle.900',
     },
   },
   tertiary: {
@@ -27,38 +27,35 @@ const bg: Colors['bg'] = {
     subtle: 'gray.700',
     interact: {
       hover: 'gray.800',
-      active: 'gray.900',
       pressed: 'gray.900',
+      default: 'brandSubtle.900',
     },
   },
   info: {
     default: 'blue.900',
-    inverse: 'blue.100',
     subtle: 'blue.700',
     interact: {
       hover: 'blue.800',
-      active: 'blue.900',
       pressed: 'blue.900',
+      default: 'brandSubtle.900',
     },
   },
   error: {
     default: 'red.900',
-    inverse: 'red.100',
     subtle: 'red.700',
     interact: {
       hover: 'red.800',
-      active: 'red.900',
       pressed: 'red.900',
+      default: 'brandSubtle.900',
     },
   },
   success: {
     default: 'green.900',
-    inverse: 'green.100',
     subtle: 'green.700',
     interact: {
       hover: 'green.800',
-      active: 'green.900',
       pressed: 'green.900',
+      default: 'brandSubtle.900',
     },
   },
   disable: 'gray.400',
@@ -71,8 +68,8 @@ const content: Colors['content'] = {
     subtle: 'brand.700',
     interact: {
       hover: 'brand.800',
-      active: 'brand.900',
       pressed: 'brand.900',
+      default: 'blue.100',
     },
   },
   secondary: {
@@ -81,8 +78,8 @@ const content: Colors['content'] = {
     subtle: 'brandSubtle.700',
     interact: {
       hover: 'brandSubtle.800',
-      active: 'brandSubtle.900',
       pressed: 'brandSubtle.900',
+      default: 'blue.100',
     },
   },
   tertiary: {
@@ -91,37 +88,34 @@ const content: Colors['content'] = {
     subtle: 'gray.700',
     interact: {
       hover: 'gray.800',
-      active: 'gray.900',
+      default: 'blue.100',
       pressed: 'gray.900',
     },
   },
   info: {
     default: 'blue.900',
-    inverse: 'blue.100',
     subtle: 'blue.700',
     interact: {
       hover: 'blue.800',
-      active: 'blue.900',
+      default: 'blue.100',
       pressed: 'blue.900',
     },
   },
   error: {
     default: 'red.900',
-    inverse: 'red.100',
     subtle: 'red.700',
     interact: {
       hover: 'red.800',
-      active: 'red.900',
+      default: 'blue.100',
       pressed: 'red.900',
     },
   },
   success: {
     default: 'green.900',
-    inverse: 'green.100',
     subtle: 'green.700',
     interact: {
       hover: 'green.800',
-      active: 'green.900',
+      default: 'blue.100',
       pressed: 'green.900',
     },
   },
@@ -135,7 +129,7 @@ const border: Colors['border'] = {
     subtle: 'brand.200',
     interact: {
       hover: 'brand.400',
-      active: 'brand.500',
+      default: 'blue.100',
       pressed: 'brand.600',
     },
   },
@@ -145,7 +139,7 @@ const border: Colors['border'] = {
     subtle: 'brandSubtle.200',
     interact: {
       hover: 'brandSubtle.400',
-      active: 'brandSubtle.500',
+      default: 'blue.100',
       pressed: 'brandSubtle.600',
     },
   },
@@ -155,37 +149,35 @@ const border: Colors['border'] = {
     subtle: 'gray.200',
     interact: {
       hover: 'gray.400',
-      active: 'gray.500',
+      default: 'blue.100',
       pressed: 'gray.600',
     },
   },
   info: {
     default: 'blue.300',
-    inverse: 'blue.600',
     subtle: 'blue.200',
     interact: {
       hover: 'blue.400',
-      active: 'blue.500',
+      default: 'blue.100',
       pressed: 'blue.600',
     },
   },
   error: {
     default: 'red.300',
-    inverse: 'red.600',
     subtle: 'red.200',
     interact: {
       hover: 'red.400',
-      active: 'red.500',
+      default: 'blue.100',
       pressed: 'red.600',
     },
   },
   success: {
     default: 'green.300',
-    inverse: 'green.600',
+
     subtle: 'green.200',
     interact: {
       hover: 'green.400',
-      active: 'green.500',
+      default: 'blue.100',
       pressed: 'green.600',
     },
   },
@@ -218,11 +210,3 @@ export const color: Colors = {
   surface,
   overlay,
 };
-
-const getPalettesColor = (colorToken: string | null, palettes: Palettes) => {
-  if (!colorToken) return undefined;
-  const [palette, shade] = colorToken.split('.');
-  return palettes[palette as keyof Palettes]?.[shade];
-};
-
-export const createColorProperties = () => {};
