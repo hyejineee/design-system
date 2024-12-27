@@ -1,5 +1,5 @@
-import type { Colors, Palettes } from './color';
-import type { Spaces } from './space';
+import type { Colors, Palettes } from '../../theme/color/color.type';
+import type { Spaces } from '../../theme/space/space.types';
 
 export interface BaseTheme {
   palette: Palettes;

@@ -1,4 +1,3 @@
-import { baseTheme } from '@ui/theme/theme';
 import type {
   BgPath,
   BorderPath,
@@ -10,34 +9,22 @@ import type {
   Palettes,
   PrimitiveColorUnit,
 } from '@ui/types/token';
+import { defineProperties } from '@vanilla-extract/sprinkles';
+import { getPaletteColor } from './util';
 
-export const getPaletteColor = (colorToken: string | null, palettes: Palettes) => {
-  if (!colorToken) return undefined;
-  const [palette, shade] = colorToken.split('.');
-
-  const isPaletteKey = (key: string): key is keyof Palettes => {
-    return key in palettes;
-  };
-
-  const isHexColorKey = (key: string): key is keyof HexColorType => {
-    const shades = Object.keys(palettes.brand);
-    return shades.includes(key as (typeof shades)[number]);
-  };
-
-  if (!isPaletteKey(palette) || !isHexColorKey(shade)) {
-    return undefined;
-  }
-
-  return palettes[palette][shade];
-};
-
-export const createColorProperties = () => {
-  const colors = baseTheme.color as Colors;
-  const palette = baseTheme.palette as Palettes;
-
-  const contentTokens: Record<ContentPath, string> = {} as Record<ContentPath, string>;
-  const bgTokens: Record<BgPath, string> = {} as Record<BgPath, string>;
-  const borderTokens: Record<BorderPath, string> = {} as Record<BorderPath, string>;
+export const createColorProperties = (colors: Colors, palettes: Palettes) => {
+  const contentTokens: Record<ContentPath | PrimitiveColorUnit, string> = {} as Record<
+    ContentPath | PrimitiveColorUnit,
+    string
+  >;
+  const bgTokens: Record<BgPath | PrimitiveColorUnit, string> = {} as Record<
+    BgPath | PrimitiveColorUnit,
+    string
+  >;
+  const borderTokens: Record<BorderPath | PrimitiveColorUnit, string> = {} as Record<
+    BorderPath | PrimitiveColorUnit,
+    string
+  >;
 
   (['content', 'bg', 'border'] as const).forEach((semanticKey) => {
     const target =
@@ -47,7 +34,7 @@ export const createColorProperties = () => {
 
     Object.entries(tokenGroup).forEach(([key, value]) => {
       if (key === 'disable') {
-        const colorValue = getPaletteColor(value, palette);
+        const colorValue = getPaletteColor(value, palettes);
         if (colorValue) {
           Object.assign(target, { [`${semanticKey}.disable`]: colorValue });
         }
@@ -55,7 +42,7 @@ export const createColorProperties = () => {
       }
 
       ['default', 'inverse', 'subtle'].forEach((status) => {
-        const colorValue = getPaletteColor(value[status], palette);
+        const colorValue = getPaletteColor(value[status], palettes);
         if (colorValue) {
           Object.assign(target, { [`${semanticKey}.${key}.${status}`]: colorValue });
         }
@@ -65,7 +52,7 @@ export const createColorProperties = () => {
         const interactColors: InteractType = value.interact;
         (Object.entries(interactColors) as Array<[keyof InteractType, PrimitiveColorUnit]>).forEach(
           ([interactKey, interactValue]) => {
-            const colorValue = getPaletteColor(interactValue, palette);
+            const colorValue = getPaletteColor(interactValue, palettes);
             if (colorValue) {
               Object.assign(target, {
                 [`${semanticKey}.${key}.interact.${interactKey}`]: colorValue,
@@ -78,7 +65,7 @@ export const createColorProperties = () => {
   });
 
   // palettes 컬러 추가
-  (Object.entries(palette) as Array<[keyof Palettes, HexColorType]>).forEach(
+  (Object.entries(palettes) as Array<[keyof Palettes, HexColorType]>).forEach(
     ([paletteKey, shades]) => {
       (Object.entries(shades) as Array<[HexColorKey, string]>).forEach(([shade, hexValue]) => {
         const tokeKey = `${paletteKey}.${shade}`;
@@ -90,9 +77,17 @@ export const createColorProperties = () => {
     }
   );
 
-  return {
-    color: contentTokens,
-    backgroundColor: bgTokens,
-    borderColor: borderTokens,
-  };
+  const colorProperties = defineProperties({
+    properties: {
+      color: contentTokens,
+      backgroundColor: bgTokens,
+      borderColor: borderTokens,
+    },
+    shorthands: {
+      bgColor: ['backgroundColor'],
+      brColor: ['borderColor'],
+    },
+  });
+
+  return colorProperties;
 };

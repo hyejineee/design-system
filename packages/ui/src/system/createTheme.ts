@@ -1,22 +1,49 @@
-import { baseTheme } from '@ui/theme/theme';
+import {
+  createColorProperties,
+  createSemanticColorContract,
+  resolveColorObject,
+} from '@ui/theme/color';
+import { createPaletteContract } from '@ui/theme/palettes';
+import { createLayoutProperties } from '@ui/theme/space';
+import { createSpaceContract } from '@ui/theme/space/space';
 import type { BaseTheme } from '@ui/types/token';
-import { createThemeContractObject } from '@ui/util/styles';
-import type { PartialDeep } from '@ui/util/types';
+import type { TransformLeafValues } from '@ui/util/types';
 import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
-import { deepMerge } from '../util/object';
-import { createSprinkles } from './createSprinkles/createSprinkles';
+import { createSprinkles } from '@vanilla-extract/sprinkles';
 
-export const createTheme = <T>(newTheme: T & PartialDeep<BaseTheme>) => {
-  const mergedTheme = deepMerge(baseTheme, newTheme);
-  const contract = createThemeContractObject(mergedTheme);
-  const token = createThemeContract(contract);
+export const createTheme = (theme: BaseTheme) => {
+  const _theme = {
+    ...theme,
+    color: {
+      bg: resolveColorObject(theme.color.bg as any, theme.palette),
+      content: resolveColorObject(theme.color.content as any, theme.palette),
+      border: resolveColorObject(theme.color.border as any, theme.palette),
+      surface: resolveColorObject(theme.color.surface as any, theme.palette),
+      overlay: resolveColorObject(theme.color.overlay as any, theme.palette),
+    },
+  };
 
-  createGlobalTheme(':root', token, mergedTheme as any);
+  const themeContract = createThemeContract({
+    palette: createPaletteContract(),
+    space: createSpaceContract(),
+    color: createSemanticColorContract(),
+  });
 
-  const sprinkles = createSprinkles(mergedTheme);
+  const sprinkles = createSprinkles(
+    createColorProperties(theme.color, theme.palette),
+    createLayoutProperties(theme.space)
+  );
+
+  createGlobalTheme(
+    ':root',
+    themeContract,
+    _theme as unknown as TransformLeafValues<BaseTheme, string>
+  );
 
   return {
-    theme: contract,
+    theme: themeContract,
     sprinkles,
   };
 };
+
+export type BaseSprinkles = Parameters<ReturnType<typeof createTheme>['sprinkles']>[0];

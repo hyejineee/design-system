@@ -12,11 +12,7 @@ export const Primary: Story = {
   args: {
     bgColor: 'bg.info.subtle',
   },
-  render: (args) => (
-    <Box bgColor='bg.error.default' color='content.error.subtle'>
-      sdfds
-    </Box>
-  ),
+  render: (args) => <Box {...args}>sdfds</Box>,
 };
 
 export default meta;

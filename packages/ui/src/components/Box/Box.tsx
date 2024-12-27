@@ -1,10 +1,9 @@
-import { baseSprinkles, type Sprinkles } from '@ui/system/createSprinkles';
-import { splitStyleProps } from '@ui/util/styles';
+import type { BaseSprinkles } from '@ui/system/createTheme';
 import type { ReactNode } from 'react';
 
 interface BoxProps
   extends Pick<
-    Sprinkles,
+    BaseSprinkles,
     | 'bgColor'
     | 'borderColor'
     | 'color'
@@ -26,7 +25,13 @@ interface BoxProps
   children?: ReactNode;
 }
 
+import { baseSprinkles } from '@ui/theme/theme.css';
+import { splitStyleProps } from '@ui/util/styles';
+
+// }
+// interface BoxProps {}
+
 export const Box = (props: BoxProps) => {
-  const { styleProps } = splitStyleProps(props, baseSprinkles);
-  return <div className={baseSprinkles({ ...styleProps })}></div>;
+  const { styleProps, restProps } = splitStyleProps(props, baseSprinkles);
+  return <div className={baseSprinkles({ ...styleProps })}>sdf</div>;
 };
