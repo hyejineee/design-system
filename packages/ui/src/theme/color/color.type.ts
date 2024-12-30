@@ -29,8 +29,16 @@ export type HexColorKey =
   | 'light'
   | 'dark';
 
+/**
+ * 사용자가 오버라이딩 할 수 있는 타입. HexColorKey를 추가할 수 있음.
+ * 예 : 100과 200 토큰 사이에 150을 추가할 수 있음.
+ */
 export interface HexColorType extends Record<HexColorKey, string> {}
 
+/**
+ * 사용자가 오버라이딩 할 수 있는 타입. PrimitiveColor 토큰을 추가할 수 있음.
+ * 예 : orange, pink를 추가할 수 있음.
+ */
 export interface Palettes extends Record<PrimitiveColorKey, HexColorType> {}
 export type PrimitiveColorUnit = `${PrimitiveColorKey}.${keyof HexColorType}`;
 
@@ -46,11 +54,20 @@ type StatusKeyWithoutInverse = Exclude<StatusKey, 'inverse'>;
 type MainSemanticColorKey = 'primary' | 'secondary' | 'tertiary';
 type SubSemanticColorKey = 'info' | 'error' | 'success';
 
+/**
+ * 사용자가 오버라이딩 할 수 있는 타입. MainSemanticColor를 추가할 수 있음.
+ * 예 : quaternary를 추가할 수 있음.
+ */
 export interface MainSemanticColorType
   extends Record<
     MainSemanticColorKey,
     Record<Exclude<StatusKey, 'interact'>, PrimitiveColorUnit> & { interact: InteractType }
   > {}
+
+/**
+ * 사용자가 오버라이딩 할 수 있는 타입. SubSemanticColor를 추가할 수 있음.
+ * 예 : warning을 추가할 수 있음.
+ */
 export interface SubSemanticColorType
   extends Record<
     SubSemanticColorKey,
@@ -74,8 +91,8 @@ export interface SemanticColorType
     DisabledColorType {}
 
 export type SemanticColorSubUnit =
-  | `${MainSemanticColorKey}.${Exclude<StatusKey, 'interact'> | InteractUnit}`
-  | `${SubSemanticColorKey}.${Exclude<StatusKeyWithoutInverse, 'interact'> | InteractUnit}`
+  | `${keyof MainSemanticColorType}.${Exclude<StatusKey, 'interact'> | InteractUnit}`
+  | `${keyof SubSemanticColorType}.${Exclude<StatusKeyWithoutInverse, 'interact'> | InteractUnit}`
   | 'disable';
 
 export type ContentPath = `content.${SemanticColorSubUnit}`;
@@ -93,4 +110,5 @@ type ColorType = Record<Exclude<SemanticTokenKey, 'surface' | 'overlay'>, Semant
   surface: SurfaceType;
   overlay: OverlayType;
 };
+// 사용자가 오버라이딩 할 수 있는 타입
 export interface Colors extends ColorType {}

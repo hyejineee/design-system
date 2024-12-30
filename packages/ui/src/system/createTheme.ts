@@ -1,12 +1,12 @@
+import type { BaseTheme } from '@ui/theme/base';
 import {
   createColorProperties,
   createSemanticColorContract,
   resolveColorObject,
 } from '@ui/theme/color';
-import { createPaletteContract } from '@ui/theme/palettes';
+import { createPaletteContract } from '@ui/theme/color/palette';
 import { createLayoutProperties } from '@ui/theme/space';
 import { createSpaceContract } from '@ui/theme/space/space';
-import type { BaseTheme } from '@ui/types/token';
 import type { TransformLeafValues } from '@ui/util/types';
 import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
 import { createSprinkles } from '@vanilla-extract/sprinkles';

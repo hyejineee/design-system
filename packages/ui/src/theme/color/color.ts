@@ -1,4 +1,4 @@
-import type { Colors } from '@ui/types/token';
+import type { Colors } from './color.type';
 
 const bg: Colors['bg'] = {
   primary: {

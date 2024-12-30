@@ -1,5 +1,5 @@
-import type { Palettes } from '@ui/types/token';
 import type { TransformLeafValues } from '@ui/util/types';
+import type { Palettes } from './color.type';
 
 export const brand = {
   100: '#B3FEBB',

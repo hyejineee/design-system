@@ -1,3 +1,4 @@
+import { defineProperties } from '@vanilla-extract/sprinkles';
 import type {
   BgPath,
   BorderPath,
@@ -8,8 +9,7 @@ import type {
   InteractType,
   Palettes,
   PrimitiveColorUnit,
-} from '@ui/types/token';
-import { defineProperties } from '@vanilla-extract/sprinkles';
+} from './color.type';
 import { getPaletteColor } from './util';
 
 export const createColorProperties = (colors: Colors, palettes: Palettes) => {

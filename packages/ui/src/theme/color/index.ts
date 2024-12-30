@@ -1,5 +1,7 @@
 export { color } from './color';
-export * from './color.type';
 export { createSemanticColorContract } from './contract';
 export { createColorProperties } from './createColorProperties';
+export { palette } from './palette';
+
+export * from './color.type';
 export * from './util';
