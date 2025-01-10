@@ -11,14 +11,21 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    // "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+
+    // 타입 선언 파일 생성 설정
+    "declaration": true,
+    "declarationDir": "./dist/@types",
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
+    "sourceMap": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "script"]
 }

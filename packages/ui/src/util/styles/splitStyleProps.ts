@@ -1,4 +1,4 @@
-import type { BaseSprinkles, createTheme } from '@ui/system/createTheme';
+import type { BaseSprinkles, createTheme } from '@ui/system/createThemeConfig/createTheme';
 
 export type StyleProps<T> = BaseSprinkles & T;
 export const splitStyleProps = <T extends object>(

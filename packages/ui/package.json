@@ -9,14 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@vanilla-extract/css": "^1.17.0",
-    "@vanilla-extract/sprinkles": "^1.6.3",
-    "clsx": "^2.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "build-storybook": "storybook build",
+    "generate-exports": "tsx ./script/generate-exports.ts"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
@@ -31,22 +25,61 @@
     "@storybook/test": "^8.4.7",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vanilla-extract/css": "^1.17.0",
+    "@vanilla-extract/sprinkles": "^1.6.3",
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "@vitejs/plugin-react": "^4.3.4",
+    "clsx": "^2.1.1",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "eslint-plugin-storybook": "^0.11.1",
     "globals": "^15.12.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "storybook": "^8.4.7",
-    "typescript": "~5.6.2",
+    "tsx": "^4.19.2",
+    "typescript": "5.6.2",
     "typescript-eslint": "^8.15.0",
     "vite": "^6.0.1",
+    "vite-plugin-dts": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "peerDependencies": {
+    "@vanilla-extract/css": "^1.17.0",
+    "@vanilla-extract/sprinkles": "^1.6.3",
+    "clsx": "^2.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "exports": {
+    "./components/Box": {
+      "types": "./dist/components/Box/index/index.d.ts",
+      "import": "./dist/components/Box/index/index.js"
+    },
+    "./system/createThemeConfig": {
+      "types": "./dist/system/createThemeConfig/index/index.d.ts",
+      "import": "./dist/system/createThemeConfig/index/index.js"
+    },
+    "./util/functions": {
+      "types": "./dist/util/functions/index.d.ts",
+      "import": "./dist/util/functions/index.js"
+    },
+    "./util/styles": {
+      "types": "./dist/util/styles/index.d.ts",
+      "import": "./dist/util/styles/index.js"
+    },
+    "./util/types": {
+      "types": "./dist/util/types/index.d.ts",
+      "import": "./dist/util/types/index.js"
+    }
+  },
+  "dependencies": {
+    "@repo/ui": "link:"
   }
 }

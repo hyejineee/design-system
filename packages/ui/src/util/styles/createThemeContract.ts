@@ -1,17 +1,17 @@
-import type { RecursiveStructure } from '../types';
-
-export const createThemeContractObject = <T extends object>(
-  obj: T
-): RecursiveStructure<T, string> => {
-  const themeContract: any = {};
+export const createThemeContractObject = <T extends Record<string, any>>(obj: T): T => {
+  const result: any = {};
 
   for (const key in obj) {
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      themeContract[key] = createThemeContractObject(obj[key] as object);
-    } else {
-      themeContract[key] = '';
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (obj[key] !== null && typeof obj[key] === 'object') {
+        // 객체인 경우 재귀적으로 처리
+        result[key] = createThemeContractObject(obj[key]);
+      } else {
+        // 객체가 아닌 경우 빈 문자열로 설정
+        result[key] = '';
+      }
     }
   }
 
-  return themeContract as RecursiveStructure<T, string>;
+  return result as T;
 };

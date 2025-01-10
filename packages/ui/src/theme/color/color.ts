@@ -2,7 +2,7 @@ import type { Colors } from './color.type';
 
 const bg: Colors['bg'] = {
   primary: {
-    default: 'brand.900',
+    default: 'brand.500',
     inverse: 'brand.100',
     subtle: 'brand.700',
     interact: {
