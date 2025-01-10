@@ -1,12 +1,7 @@
 import type { BaseTheme } from '@ui/theme/base';
-import {
-  createColorProperties,
-  createSemanticColorContract,
-  resolveColorObject,
-} from '@ui/theme/color';
-import { createPaletteContract } from '@ui/theme/color/palette';
+import { createColorProperties, resolveColorObject } from '@ui/theme/color';
 import { createLayoutProperties } from '@ui/theme/space';
-import { createSpaceContract } from '@ui/theme/space/space';
+import { createThemeContractObject } from '@ui/util/styles';
 import type { TransformLeafValues } from '@ui/util/types';
 import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
 import { createSprinkles } from '@vanilla-extract/sprinkles';
@@ -23,11 +18,9 @@ export const createTheme = (theme: BaseTheme) => {
     },
   };
 
-  const themeContract = createThemeContract({
-    palette: createPaletteContract(),
-    space: createSpaceContract(),
-    color: createSemanticColorContract(),
-  });
+  const themeContract = createThemeContract(
+    createThemeContractObject(_theme) as unknown as TransformLeafValues<BaseTheme, string>
+  );
 
   const sprinkles = createSprinkles(
     createColorProperties(theme.color, theme.palette),
