@@ -26,6 +26,9 @@ export const resolveColorObject = <T extends ColorValue>(
 
 export const getPaletteColor = (colorToken: string, palettes: Palettes) => {
   if (!colorToken) return undefined;
+
+  if (colorToken.startsWith('#')) return colorToken;
+
   const [palette, shade] = colorToken.split('.');
 
   const isPaletteKey = (key: string): key is keyof Palettes => {

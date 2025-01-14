@@ -3,9 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "sideEffects": [
+    "*.css.ts"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -35,6 +38,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "eslint-plugin-storybook": "^0.11.1",
     "globals": "^15.12.0",
+    "postcss-preset-env": "^10.1.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "storybook": "^8.4.7",
@@ -59,24 +63,48 @@
   },
   "exports": {
     "./components/Box": {
-      "types": "./dist/components/Box/index/index.d.ts",
-      "import": "./dist/components/Box/index/index.js"
+      "types": "./dist/@types/components/Box/index.d.ts",
+      "import": "./dist/components/Box.js"
+    },
+    "./system/createTheme": {
+      "types": "./dist/@types/system/createTheme/index.d.ts",
+      "import": "./dist/system/createTheme.js"
     },
     "./system/createThemeConfig": {
-      "types": "./dist/system/createThemeConfig/index/index.d.ts",
-      "import": "./dist/system/createThemeConfig/index/index.js"
+      "types": "./dist/@types/system/createThemeConfig/index.d.ts",
+      "import": "./dist/system/createThemeConfig.js"
+    },
+    "./system/createThemeSprinkles": {
+      "types": "./dist/@types/system/createThemeSprinkles/index.d.ts",
+      "import": "./dist/system/createThemeSprinkles.js"
+    },
+    "./theme/color": {
+      "types": "./dist/@types/theme/color/index.d.ts",
+      "import": "./dist/theme/color.js"
+    },
+    "./theme/size": {
+      "types": "./dist/@types/theme/size/index.d.ts",
+      "import": "./dist/theme/size.js"
+    },
+    "./theme/space": {
+      "types": "./dist/@types/theme/space/index.d.ts",
+      "import": "./dist/theme/space.js"
+    },
+    "./theme/typo": {
+      "types": "./dist/@types/theme/typo/index.d.ts",
+      "import": "./dist/theme/typo.js"
     },
     "./util/functions": {
-      "types": "./dist/util/functions/index.d.ts",
-      "import": "./dist/util/functions/index.js"
+      "types": "./dist/util/functions.d.ts",
+      "import": "./dist/util/functions.js"
     },
     "./util/styles": {
-      "types": "./dist/util/styles/index.d.ts",
-      "import": "./dist/util/styles/index.js"
+      "types": "./dist/util/styles.d.ts",
+      "import": "./dist/util/styles.js"
     },
     "./util/types": {
-      "types": "./dist/util/types/index.d.ts",
-      "import": "./dist/util/types/index.js"
+      "types": "./dist/util/types.d.ts",
+      "import": "./dist/util/types.js"
     }
   },
   "dependencies": {

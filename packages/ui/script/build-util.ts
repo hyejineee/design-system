@@ -26,7 +26,7 @@ export function getDirectoryEntries(baseDir: string, prefix: string = ''): Entry
 
     // 디렉토리에 index.ts 파일이 있는 경우
     if (hasIndexFile(fullPath)) {
-      entries[`${entryName}/index`] = resolve(fullPath, 'index.ts');
+      entries[`${entryName}`] = resolve(fullPath, 'index.ts');
     } else {
       // index.ts 파일이 없는 경우 하위 파일들을 개별 entry point로 등록
       const subFiles = readdirSync(fullPath, { withFileTypes: true });

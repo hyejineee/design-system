@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { getDirectoryEntries, hasIndexFile } from './build-util';
+import { getDirectoryEntries } from './build-util';
 
 // ES 모듈에서 __dirname 대체하기
 const __filename = fileURLToPath(import.meta.url);
@@ -20,33 +20,27 @@ const exports: Record<string, any> = {};
 const componentEntries = getDirectoryEntries(resolve(srcDir, 'components'), 'components');
 Object.keys(componentEntries).forEach((key) => {
   exports[`./${key}`] = {
-    types: `./dist/${key}/index.d.ts`,
-    import: `./dist/${key}/index.js`,
+    types: `./dist/@types/${key}/index.d.ts`,
+    import: `./dist/${key}.js`,
   };
 });
 
-// System exports
-if (hasIndexFile(resolve(srcDir, 'system'))) {
-  exports['./system'] = {
-    types: './dist/system/index.d.ts',
-    import: './dist/system/index.js',
-  };
-}
 const systemEntries = getDirectoryEntries(resolve(srcDir, 'system'), 'system');
 Object.keys(systemEntries).forEach((key) => {
   exports[`./${key}`] = {
-    types: `./dist/${key}/index.d.ts`,
-    import: `./dist/${key}/index.js`,
+    types: `./dist/@types/${key}/index.d.ts`,
+    import: `./dist/${key}.js`,
   };
 });
 
 // Theme exports
-if (hasIndexFile(resolve(srcDir, 'theme'))) {
-  exports['./theme'] = {
-    types: './dist/theme/index.d.ts',
-    import: './dist/theme/index.js',
+const themeEntries = getDirectoryEntries(resolve(srcDir, 'theme'), 'theme');
+Object.keys(themeEntries).forEach((key) => {
+  exports[`./${key}`] = {
+    types: `./dist/@types/${key}/index.d.ts`,
+    import: `./dist/${key}.js`,
   };
-}
+});
 
 // Utils exports
 const utilEntries = getDirectoryEntries(resolve(srcDir, 'util'), 'util');

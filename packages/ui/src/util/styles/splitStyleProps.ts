@@ -1,13 +1,13 @@
-import type { BaseSprinkles, createTheme } from '@ui/system/createThemeConfig/createTheme';
+import type { BaseSprinkles, createThemeSprinkles } from '@ui/system/createThemeSprinkles';
 
 export type StyleProps<T> = BaseSprinkles & T;
 export const splitStyleProps = <T extends object>(
   props: StyleProps<T>,
-  sprinkles: ReturnType<typeof createTheme>['sprinkles']
+  sprinkles: ReturnType<typeof createThemeSprinkles>
 ) => {
   const keys = new Set<string>(sprinkles.properties);
 
-  const styleProps: Partial<BaseSprinkles> = {};
+  const styleProps: Partial<BaseSprinkles> = {} as Partial<BaseSprinkles>;
   const restProps: Partial<T> = {};
 
   Object.entries(props).forEach(([key, value]) => {

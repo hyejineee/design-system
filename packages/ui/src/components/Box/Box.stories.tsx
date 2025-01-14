@@ -16,6 +16,10 @@ export const Primary: Story = {
     children: 'BOX',
     flexCenter: true,
   },
+
+  render: (args) => {
+    return <Box {...args}>ddd</Box>;
+  },
 };
 
 export default meta;

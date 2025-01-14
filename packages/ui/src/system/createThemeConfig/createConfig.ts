@@ -1,15 +1,24 @@
-import { type BaseTheme } from '@ui/theme/base';
-import type { createTheme } from './createTheme';
+import { deepMerge } from '@ui/util/functions';
+import { baseTheme } from '../createTheme/baseTheme.css';
+import type { BaseTheme } from '../createTheme/types';
+import { baseSprinkles } from '../createThemeSprinkles';
+import type { createThemeSprinkles } from '../createThemeSprinkles/createThemSprinkles';
 
 export interface ThemeConfig {
-  theme: BaseTheme;
-  sprinkles: ReturnType<typeof createTheme>['sprinkles'];
+  theme?: BaseTheme;
+  sprinkles?: ReturnType<typeof createThemeSprinkles>;
 }
 
 let currentConfig: ThemeConfig | null = null;
 
-export const setThemeConfig = (config: ThemeConfig) => {
-  currentConfig = config;
+export const setThemeConfig = (config?: ThemeConfig) => {
+  const defaultConfig: ThemeConfig = {
+    theme: baseTheme as unknown as BaseTheme,
+    sprinkles: baseSprinkles,
+  };
+
+  const merged = deepMerge(defaultConfig, config);
+  currentConfig = merged;
 };
 
 export const getThemeConfig = (): ThemeConfig => {

@@ -14,7 +14,7 @@
     "moduleDetection": "force",
     "noEmit": false,
     "jsx": "react-jsx",
-
+    "jsxImportSource": "react",
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -36,6 +36,6 @@
       "@ui/util/*": ["util/*"]
     }
   },
-  "include": ["src", "style.config.ts"],
-  "exclude": ["node_modules", "dist", "**/*.stories.tsx", "**/*.test.tsx"]
+  "include": ["src", "style.config.ts", ""],
+  "exclude": ["node_modules", "dist", "**/*.test.tsx"]
 }

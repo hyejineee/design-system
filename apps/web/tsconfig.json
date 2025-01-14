@@ -11,10 +11,10 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    "next.config.js",
-    ".next/types/**/*.ts"
+    "next.configc.js",
+    ".next/types/**/*.ts",
+    "style.config.ts",
+    "app/theme.css.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

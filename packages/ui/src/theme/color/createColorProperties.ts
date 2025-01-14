@@ -35,6 +35,7 @@ export const createColorProperties = (colors: Colors, palettes: Palettes) => {
     Object.entries(tokenGroup).forEach(([key, value]) => {
       if (key === 'disable') {
         const colorValue = getPaletteColor(value, palettes);
+
         if (colorValue) {
           Object.assign(target, { [`${semanticKey}.disable`]: colorValue });
         }
@@ -71,7 +72,7 @@ export const createColorProperties = (colors: Colors, palettes: Palettes) => {
         const tokeKey = `${paletteKey}.${shade}`;
 
         Object.assign(contentTokens, { [tokeKey]: hexValue });
-        Object.assign(bgTokens, { [tokeKey]: hexValue });
+        Object.assign(bgTokens, { ...bgTokens, [tokeKey]: hexValue });
         Object.assign(borderTokens, { [tokeKey]: hexValue });
       });
     }
