@@ -26,8 +26,6 @@ const entries = {
   ...getDirectoryEntries(resolve(__dirname, 'src/util'), 'util'),
 };
 
-console.log('entries', entries);
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -51,9 +49,6 @@ export default defineConfig({
     rollupOptions: {
       external: externals,
       output: {
-        // 각 파일을 개별적으로 번들링
-        preserveModules: true,
-        preserveModulesRoot: 'src',
         assetFileNames({ name }) {
           return name?.replace(/\.css\.ts\.css$/, '.css') ?? '';
         },

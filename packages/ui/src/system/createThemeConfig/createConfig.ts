@@ -5,13 +5,13 @@ import { baseSprinkles } from '../createThemeSprinkles';
 import type { createThemeSprinkles } from '../createThemeSprinkles/createThemSprinkles';
 
 export interface ThemeConfig {
-  theme?: BaseTheme;
-  sprinkles?: ReturnType<typeof createThemeSprinkles>;
+  theme: BaseTheme;
+  sprinkles: ReturnType<typeof createThemeSprinkles>;
 }
 
 let currentConfig: ThemeConfig | null = null;
 
-export const setThemeConfig = (config?: ThemeConfig) => {
+export const setThemeConfig = (config?: Partial<ThemeConfig>) => {
   const defaultConfig: ThemeConfig = {
     theme: baseTheme as unknown as BaseTheme,
     sprinkles: baseSprinkles,
