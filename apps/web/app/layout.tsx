@@ -1,7 +1,7 @@
+import type { BaseTheme } from '@repo/ui/system/createTheme';
 import { setThemeConfig } from '@repo/ui/system/createThemeConfig';
 import type { Metadata } from 'next';
-
-import { appTheme } from './theme.css';
+import { appTheme, sprinkles } from './theme.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 // console.log(appTheme);
 
 setThemeConfig({
-  theme: appTheme,
+  theme: appTheme as unknown as BaseTheme,
   sprinkles,
 });
 

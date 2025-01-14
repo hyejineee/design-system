@@ -2,8 +2,6 @@
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 const withVanillaExtract = createVanillaExtractPlugin();
 
-const nextConfig = {
-  transpilePackages: ['@repo/ui'],
-};
+const nextConfig = {};
 
 export default withVanillaExtract(nextConfig);

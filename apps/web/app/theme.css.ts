@@ -1,5 +1,15 @@
-import { createTheme } from '@repo/ui/system/createTheme';
+import { createTheme, type BaseTheme } from '@repo/ui/system/createTheme';
 import { createThemeSprinkles } from '@repo/ui/system/createThemeSprinkles';
+import type { PartialDeep } from '@repo/ui/util/types';
 
-export const appTheme: ReturnType<typeof createTheme> = createTheme();
-export const sprinkles = createThemeSprinkles();
+export const customTheme: PartialDeep<BaseTheme> = {
+  color: {
+    bg: {
+      error: {
+        default: 'red.500',
+      },
+    },
+  },
+};
+export const appTheme = createTheme(customTheme);
+export const sprinkles = createThemeSprinkles(customTheme);
