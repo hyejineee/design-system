@@ -4,15 +4,21 @@ import type { UtilStyleProps } from '@ui/util/styles/style.types';
 import type { ChildrenProps, PolymorphicProps } from '@ui/util/types';
 import clsx from 'clsx';
 import type { ElementType } from 'react';
-interface BoxProps extends UtilStyleProps, ChildrenProps {}
 
-export const Box = <T extends ElementType = 'div'>(props: PolymorphicProps<T, BoxProps>) => {
-  const { as, ref, className } = props;
+interface RowProps extends UtilStyleProps, ChildrenProps {}
+
+export const Row = <T extends ElementType = 'div'>(props: PolymorphicProps<T, RowProps>) => {
+  const { as, ref, className, ...rest } = props;
   const Element = as || 'div';
   const styleConfig = getThemeConfig();
-  const { styleProps, restProps } = splitStyleProps(props, styleConfig.sprinkles);
+  const { styleProps, restProps } = splitStyleProps(rest, styleConfig.sprinkles);
 
-  const finalClassName = clsx(styleConfig.sprinkles({ ...styleProps }), className);
+  const baseStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+  } as const;
+
+  const finalClassName = clsx(styleConfig.sprinkles({ ...baseStyles, ...styleProps }), className);
 
   return <Element ref={ref} {...restProps} className={finalClassName} />;
 };
