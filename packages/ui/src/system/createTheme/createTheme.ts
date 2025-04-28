@@ -39,5 +39,5 @@ export const createTheme = (theme?: PartialDeep<BaseTheme>) => {
     mergedTheme as unknown as TransformLeafValues<BaseTheme, string>
   );
 
-  return mergedTheme;
+  return mergedTheme as unknown as BaseTheme;
 };

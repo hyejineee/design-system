@@ -1,7 +1,7 @@
+import { baseSprinkles } from '@ui/theme/baseSprinkles.css';
+import { baseTheme } from '@ui/theme/baseTheme.css';
 import { deepMerge } from '@ui/util/functions';
-import { baseTheme } from '../createTheme/baseTheme.css';
 import type { BaseTheme } from '../createTheme/types';
-import { baseSprinkles } from '../createThemeSprinkles';
 import type { createThemeSprinkles } from '../createThemeSprinkles/createThemSprinkles';
 
 export interface ThemeConfig {

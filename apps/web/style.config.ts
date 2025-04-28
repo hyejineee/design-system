@@ -1,8 +1,11 @@
+import { createTheme } from '@repo/ui/system/createTheme';
 import { setThemeConfig } from '@repo/ui/system/createThemeConfig';
-import { baseSprinkles, baseTheme } from '@repo/ui/theme/base';
+import { createThemeSprinkles } from '@repo/ui/system/createThemeSprinkles';
 
-console.log('setThemeConfig call');
+const theme = createTheme();
+const sprinkles = createThemeSprinkles();
+
 setThemeConfig({
-  theme: baseTheme,
-  sprinkles: baseSprinkles,
+  theme: theme,
+  sprinkles: sprinkles,
 });

@@ -11,14 +11,18 @@ type Story = StoryObj<typeof Box>;
 
 export const Primary: Story = {
   args: {
-    bgColor: 'bg.primary.default',
+    bgColor: 'bg.info.subtle',
     color: 'blue.100',
     children: 'BOX',
     flexCenter: true,
   },
 
   render: (args) => {
-    return <Box {...args}>ddd</Box>;
+    return (
+      <Box {...args} as={'a'}>
+        ddd
+      </Box>
+    );
   },
 };
 
