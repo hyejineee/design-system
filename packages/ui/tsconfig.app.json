@@ -29,12 +29,16 @@
 
     "baseUrl": "./src",
     "paths": {
+      "@ui/types": ["types"],
       "@ui/types/*": ["types/*"],
+      "@ui/theme": ["theme"],
       "@ui/theme/*": ["theme/*"],
+      "@ui/system": ["system"],
       "@ui/system/*": ["system/*"],
+      "@ui/util": ["util"],
       "@ui/util/*": ["util/*"]
     }
   },
-  "include": ["src", "style.config.ts", ""],
-  "exclude": ["node_modules", "dist", "**/*.test.tsx"]
+  "include": ["src", "style.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

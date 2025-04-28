@@ -1,3 +1,3 @@
-import { createTheme } from '@ui/system/createTheme/createTheme';
+import { createTheme } from '@ui/system/createTheme';
 
 export const baseTheme = createTheme();

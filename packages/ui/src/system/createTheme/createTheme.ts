@@ -1,5 +1,4 @@
-import { color, palette, resolveColorObject } from '@ui/theme/color';
-import { space } from '@ui/theme/space';
+import { color, palette, resolveColorObject, space } from '@ui/theme';
 import { deepMerge } from '@ui/util/functions';
 import { createThemeContractObject } from '@ui/util/styles';
 import type { PartialDeep, TransformLeafValues } from '@ui/util/types';

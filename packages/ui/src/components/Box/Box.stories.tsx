@@ -18,11 +18,7 @@ export const Primary: Story = {
   },
 
   render: (args) => {
-    return (
-      <Box {...args} as={'a'}>
-        ddd
-      </Box>
-    );
+    return <Box {...args} />;
   },
 };
 
