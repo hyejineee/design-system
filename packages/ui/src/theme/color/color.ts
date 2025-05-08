@@ -1,212 +1,329 @@
 import type { Colors } from './color.type';
-
-const bg: Colors['bg'] = {
-  primary: {
-    default: 'brand.500',
-    inverse: 'brand.100',
-    subtle: 'brand.700',
-    interact: {
-      hover: 'brand.800',
-      pressed: 'brand.900',
-      default: 'brand.500',
-    },
-  },
-  secondary: {
-    default: 'brandSubtle.900',
-    inverse: 'brandSubtle.100',
-    subtle: 'brandSubtle.700',
-    interact: {
-      hover: 'brandSubtle.800',
-      pressed: 'brandSubtle.900',
-      default: 'brandSubtle.900',
-    },
-  },
-  tertiary: {
-    default: 'gray.900',
-    inverse: 'gray.100',
-    subtle: 'gray.700',
-    interact: {
-      hover: 'gray.800',
-      pressed: 'gray.900',
-      default: 'brandSubtle.900',
-    },
-  },
-  info: {
-    default: 'blue.900',
-    subtle: 'blue.700',
-    interact: {
-      hover: 'blue.800',
-      pressed: 'blue.900',
-      default: 'brandSubtle.900',
-    },
-  },
-  error: {
-    default: 'red.900',
-    subtle: 'red.700',
-    interact: {
-      hover: 'red.800',
-      pressed: 'red.900',
-      default: 'brandSubtle.900',
-    },
-  },
-  success: {
-    default: 'green.900',
-    subtle: 'green.700',
-    interact: {
-      hover: 'green.800',
-      pressed: 'green.900',
-      default: 'brandSubtle.900',
-    },
-  },
-  disable: 'gray.400',
-};
-
-const content: Colors['content'] = {
-  primary: {
-    default: 'brand.900',
-    inverse: 'brand.100',
-    subtle: 'brand.700',
-    interact: {
-      hover: 'brand.800',
-      pressed: 'brand.900',
-      default: 'blue.100',
-    },
-  },
-  secondary: {
-    default: 'brandSubtle.900',
-    inverse: 'brandSubtle.100',
-    subtle: 'brandSubtle.700',
-    interact: {
-      hover: 'brandSubtle.800',
-      pressed: 'brandSubtle.900',
-      default: 'blue.100',
-    },
-  },
-  tertiary: {
-    default: 'gray.900',
-    inverse: 'gray.100',
-    subtle: 'gray.700',
-    interact: {
-      hover: 'gray.800',
-      default: 'blue.100',
-      pressed: 'gray.900',
-    },
-  },
-  info: {
-    default: 'blue.900',
-    subtle: 'blue.700',
-    interact: {
-      hover: 'blue.800',
-      default: 'blue.100',
-      pressed: 'blue.900',
-    },
-  },
-  error: {
-    default: 'red.900',
-    subtle: 'red.700',
-    interact: {
-      hover: 'red.800',
-      default: 'blue.100',
-      pressed: 'red.900',
-    },
-  },
-  success: {
-    default: 'green.900',
-    subtle: 'green.700',
-    interact: {
-      hover: 'green.800',
-      default: 'blue.100',
-      pressed: 'green.900',
-    },
-  },
-  disable: 'gray.400',
-};
-
-const border: Colors['border'] = {
-  primary: {
-    default: 'brand.300',
-    inverse: 'brand.600',
-    subtle: 'brand.200',
-    interact: {
-      hover: 'brand.400',
-      default: 'blue.100',
-      pressed: 'brand.600',
-    },
-  },
-  secondary: {
-    default: 'brandSubtle.300',
-    inverse: 'brandSubtle.600',
-    subtle: 'brandSubtle.200',
-    interact: {
-      hover: 'brandSubtle.400',
-      default: 'blue.100',
-      pressed: 'brandSubtle.600',
-    },
-  },
-  tertiary: {
-    default: 'gray.300',
-    inverse: 'gray.600',
-    subtle: 'gray.200',
-    interact: {
-      hover: 'gray.400',
-      default: 'blue.100',
-      pressed: 'gray.600',
-    },
-  },
-  info: {
-    default: 'blue.300',
-    subtle: 'blue.200',
-    interact: {
-      hover: 'blue.400',
-      default: 'blue.100',
-      pressed: 'blue.600',
-    },
-  },
-  error: {
-    default: 'red.300',
-    subtle: 'red.200',
-    interact: {
-      hover: 'red.400',
-      default: 'blue.100',
-      pressed: 'red.600',
-    },
-  },
-  success: {
-    default: 'green.300',
-
-    subtle: 'green.200',
-    interact: {
-      hover: 'green.400',
-      default: 'blue.100',
-      pressed: 'green.600',
-    },
-  },
-  disable: 'gray.200',
-};
-
-const surface: Colors['surface'] = {
-  none: 'none',
-  low: '0 1px 3px rgba(0,0,0,0.12)',
-  medium: '0 4px 6px rgba(0,0,0,0.15)',
-  raised: '0 6px 12px rgba(0,0,0,0.18)',
-  high: '0 12px 24px rgba(0,0,0,0.22)',
-  highest: '0 24px 38px rgba(0,0,0,0.25)',
-};
-
-const overlay: Colors['overlay'] = {
-  none: 'rgba(0, 0, 0, 0)',
-  subtle: 'rgba(0, 0, 0, 0.15)',
-  light: 'rgba(0, 0, 0, 0.3)',
-  medium: 'rgba(0, 0, 0, 0.5)',
-  deep: 'rgba(0, 0, 0, 0.7)',
-  heavy: 'rgba(0, 0, 0, 0.9)',
-  full: 'rgba(0, 0, 0, 1)',
-};
-
 export const color: Colors = {
-  bg,
-  content,
-  border,
-  surface,
-  overlay,
+  content: {
+    primary: 'gray.900',
+    secondary: 'gray.700',
+    tertiary: 'gray.500',
+    info: 'info.500',
+    error: 'error.500',
+    success: 'success.500',
+    warning: 'warning.500',
+    inverse: 'common.white',
+    // Primary variant colors
+    'primary.solidColor': 'primary.50',
+    'primary.solidActiveColor': 'primary.100',
+    'primary.softColor': 'primary.50',
+    'primary.softActiveColor': 'primary.100',
+    'primary.outlineColor': 'primary.500',
+    'primary.outlineActiveColor': 'primary.600',
+    'primary.ghostColor': 'primary.500',
+    'primary.ghostActiveColor': 'primary.600',
+
+    // Secondary variant colors
+    'secondary.solidColor': 'secondary.50',
+    'secondary.solidActiveColor': 'secondary.100',
+    'secondary.softColor': 'secondary.50',
+    'secondary.softActiveColor': 'secondary.100',
+    'secondary.outlineColor': 'secondary.500',
+    'secondary.outlineActiveColor': 'secondary.600',
+    'secondary.ghostColor': 'secondary.500',
+    'secondary.ghostActiveColor': 'secondary.600',
+
+    // Tertiary variant colors
+    'tertiary.solidColor': 'tertiary.50',
+    'tertiary.solidActiveColor': 'tertiary.100',
+    'tertiary.softColor': 'tertiary.50',
+    'tertiary.softActiveColor': 'tertiary.100',
+    'tertiary.outlineColor': 'tertiary.500',
+    'tertiary.outlineActiveColor': 'tertiary.600',
+    'tertiary.ghostColor': 'tertiary.500',
+    'tertiary.ghostActiveColor': 'tertiary.600',
+
+    // Info variant colors
+    'info.solidColor': 'info.50',
+    'info.solidActiveColor': 'info.100',
+    'info.softColor': 'info.50',
+    'info.softActiveColor': 'info.100',
+    'info.outlineColor': 'info.500',
+    'info.outlineActiveColor': 'info.600',
+    'info.ghostColor': 'info.500',
+    'info.ghostActiveColor': 'info.600',
+
+    // Error variant colors
+    'error.solidColor': 'error.50',
+    'error.solidActiveColor': 'error.100',
+    'error.softColor': 'error.50',
+    'error.softActiveColor': 'error.100',
+    'error.outlineColor': 'error.500',
+    'error.outlineActiveColor': 'error.600',
+    'error.ghostColor': 'error.500',
+    'error.ghostActiveColor': 'error.600',
+
+    // Success variant colors
+    'success.solidColor': 'success.50',
+    'success.solidActiveColor': 'success.100',
+    'success.softColor': 'success.50',
+    'success.softActiveColor': 'success.100',
+    'success.outlineColor': 'success.500',
+    'success.outlineActiveColor': 'success.600',
+    'success.ghostColor': 'success.500',
+    'success.ghostActiveColor': 'success.600',
+
+    // Warning variant colors
+    'warning.solidColor': 'warning.50',
+    'warning.solidActiveColor': 'warning.100',
+    'warning.softColor': 'warning.50',
+    'warning.softActiveColor': 'warning.100',
+    'warning.outlineColor': 'warning.500',
+    'warning.outlineActiveColor': 'warning.600',
+    'warning.ghostColor': 'warning.500',
+    'warning.ghostActiveColor': 'warning.600',
+
+    // Disabled variant colors
+    'disabled.solidColor': 'gray.400',
+    'disabled.softColor': 'gray.400',
+    'disabled.outlineColor': 'gray.400',
+    'disabled.ghostColor': 'gray.400',
+  },
+  bg: {
+    primary: 'common.white',
+    secondary: 'gray.50',
+    tertiary: 'gray.100',
+    info: 'info.100',
+    error: 'error.100',
+    success: 'success.100',
+    warning: 'warning.100',
+
+    // Primary variant backgrounds
+    'primary.solidBg': 'primary.500',
+    'primary.solidHoverBg': 'primary.100',
+    'primary.solidActiveBg': 'primary.200',
+    'primary.softBg': 'primary.50',
+    'primary.softHoverBg': 'primary.100',
+    'primary.softActiveBg': 'primary.200',
+    'primary.outlineBg': 'transparent',
+    'primary.outlineHoverBg': 'primary.100',
+    'primary.outlineActiveBg': 'primary.200',
+    'primary.ghostBg': 'transparent',
+    'primary.ghostHoverBg': 'transparent',
+    'primary.ghostActiveBg': 'transparent',
+
+    // Secondary variant backgrounds
+    'secondary.solidBg': 'secondary.50',
+    'secondary.solidHoverBg': 'secondary.100',
+    'secondary.solidActiveBg': 'secondary.200',
+    'secondary.softBg': 'secondary.50',
+    'secondary.softHoverBg': 'secondary.100',
+    'secondary.softActiveBg': 'secondary.200',
+    'secondary.outlineBg': 'transparent',
+    'secondary.outlineHoverBg': 'secondary.100',
+    'secondary.outlineActiveBg': 'secondary.200',
+    'secondary.ghostBg': 'transparent',
+    'secondary.ghostHoverBg': 'transparent',
+    'secondary.ghostActiveBg': 'transparent',
+
+    // Tertiary variant backgrounds
+    'tertiary.solidBg': 'tertiary.50',
+    'tertiary.solidHoverBg': 'tertiary.100',
+    'tertiary.solidActiveBg': 'tertiary.200',
+    'tertiary.softBg': 'tertiary.50',
+    'tertiary.softHoverBg': 'tertiary.100',
+    'tertiary.softActiveBg': 'tertiary.200',
+    'tertiary.outlineBg': 'transparent',
+    'tertiary.outlineHoverBg': 'tertiary.100',
+    'tertiary.outlineActiveBg': 'tertiary.200',
+    'tertiary.ghostBg': 'transparent',
+    'tertiary.ghostHoverBg': 'transparent',
+    'tertiary.ghostActiveBg': 'transparent',
+
+    // Info variant backgrounds
+    'info.solidBg': 'info.50',
+    'info.solidHoverBg': 'info.100',
+    'info.solidActiveBg': 'info.200',
+    'info.softBg': 'info.50',
+    'info.softHoverBg': 'info.100',
+    'info.softActiveBg': 'info.200',
+    'info.outlineBg': 'transparent',
+    'info.outlineHoverBg': 'info.100',
+    'info.outlineActiveBg': 'info.200',
+    'info.ghostBg': 'transparent',
+    'info.ghostHoverBg': 'transparent',
+    'info.ghostActiveBg': 'transparent',
+
+    // Error variant backgrounds
+    'error.solidBg': 'error.50',
+    'error.solidHoverBg': 'error.100',
+    'error.solidActiveBg': 'error.200',
+    'error.softBg': 'error.50',
+    'error.softHoverBg': 'error.100',
+    'error.softActiveBg': 'error.200',
+    'error.outlineBg': 'transparent',
+    'error.outlineHoverBg': 'error.100',
+    'error.outlineActiveBg': 'error.200',
+    'error.ghostBg': 'transparent',
+    'error.ghostHoverBg': 'transparent',
+    'error.ghostActiveBg': 'transparent',
+
+    // Success variant backgrounds
+    'success.solidBg': 'success.50',
+    'success.solidHoverBg': 'success.100',
+    'success.solidActiveBg': 'success.200',
+    'success.softBg': 'success.50',
+    'success.softHoverBg': 'success.100',
+    'success.softActiveBg': 'success.200',
+    'success.outlineBg': 'transparent',
+    'success.outlineHoverBg': 'success.100',
+    'success.outlineActiveBg': 'success.200',
+    'success.ghostBg': 'transparent',
+    'success.ghostHoverBg': 'transparent',
+    'success.ghostActiveBg': 'transparent',
+
+    // Warning variant backgrounds
+    'warning.solidBg': 'warning.50',
+    'warning.solidHoverBg': 'warning.100',
+    'warning.solidActiveBg': 'warning.200',
+    'warning.softBg': 'warning.50',
+    'warning.softHoverBg': 'warning.100',
+    'warning.softActiveBg': 'warning.200',
+    'warning.outlineBg': 'transparent',
+    'warning.outlineHoverBg': 'warning.100',
+    'warning.outlineActiveBg': 'warning.200',
+    'warning.ghostBg': 'transparent',
+    'warning.ghostHoverBg': 'transparent',
+    'warning.ghostActiveBg': 'transparent',
+
+    // Disabled variant backgrounds
+    'disabled.solidBg': 'gray.300',
+    'disabled.softBg': 'gray.100',
+    'disabled.outlineBg': 'transparent',
+    'disabled.ghostBg': 'transparent',
+  },
+  border: {
+    primary: 'primary.500',
+    secondary: 'secondary.500',
+    tertiary: 'tertiary.500',
+    info: 'info.500',
+    error: 'error.500',
+    success: 'success.500',
+    warning: 'warning.500',
+    // Primary variant borders
+    'primary.solidBorder': 'transparent',
+    'primary.solidHoverBorder': 'transparent',
+    'primary.solidActiveBorder': 'transparent',
+    'primary.softBorder': 'transparent',
+    'primary.softHoverBorder': 'transparent',
+    'primary.softActiveBorder': 'transparent',
+    'primary.outlineBorder': 'primary.500',
+    'primary.outlineHoverBorder': 'primary.600',
+    'primary.outlineActiveBorder': 'primary.700',
+    'primary.ghostBorder': 'transparent',
+    'primary.ghostHoverBorder': 'transparent',
+    'primary.ghostActiveBorder': 'transparent',
+
+    // Secondary variant borders
+    'secondary.solidBorder': 'transparent',
+    'secondary.solidHoverBorder': 'transparent',
+    'secondary.solidActiveBorder': 'transparent',
+    'secondary.softBorder': 'transparent',
+    'secondary.softHoverBorder': 'transparent',
+    'secondary.softActiveBorder': 'transparent',
+    'secondary.outlineBorder': 'secondary.500',
+    'secondary.outlineHoverBorder': 'secondary.600',
+    'secondary.outlineActiveBorder': 'secondary.700',
+    'secondary.ghostBorder': 'transparent',
+    'secondary.ghostHoverBorder': 'transparent',
+    'secondary.ghostActiveBorder': 'transparent',
+
+    // Tertiary variant borders
+    'tertiary.solidBorder': 'transparent',
+    'tertiary.solidHoverBorder': 'transparent',
+    'tertiary.solidActiveBorder': 'transparent',
+    'tertiary.softBorder': 'transparent',
+    'tertiary.softHoverBorder': 'transparent',
+    'tertiary.softActiveBorder': 'transparent',
+    'tertiary.outlineBorder': 'tertiary.500',
+    'tertiary.outlineHoverBorder': 'tertiary.600',
+    'tertiary.outlineActiveBorder': 'tertiary.700',
+    'tertiary.ghostBorder': 'transparent',
+    'tertiary.ghostHoverBorder': 'transparent',
+    'tertiary.ghostActiveBorder': 'transparent',
+
+    // Info variant borders
+    'info.solidBorder': 'transparent',
+    'info.solidHoverBorder': 'transparent',
+    'info.solidActiveBorder': 'transparent',
+    'info.softBorder': 'transparent',
+    'info.softHoverBorder': 'transparent',
+    'info.softActiveBorder': 'transparent',
+    'info.outlineBorder': 'info.500',
+    'info.outlineHoverBorder': 'info.600',
+    'info.outlineActiveBorder': 'info.700',
+    'info.ghostBorder': 'transparent',
+    'info.ghostHoverBorder': 'transparent',
+    'info.ghostActiveBorder': 'transparent',
+
+    // Error variant borders
+    'error.solidBorder': 'transparent',
+    'error.solidHoverBorder': 'transparent',
+    'error.solidActiveBorder': 'transparent',
+    'error.softBorder': 'transparent',
+    'error.softHoverBorder': 'transparent',
+    'error.softActiveBorder': 'transparent',
+    'error.outlineBorder': 'error.500',
+    'error.outlineHoverBorder': 'error.600',
+    'error.outlineActiveBorder': 'error.700',
+    'error.ghostBorder': 'transparent',
+    'error.ghostHoverBorder': 'transparent',
+    'error.ghostActiveBorder': 'transparent',
+
+    // Success variant borders
+    'success.solidBorder': 'transparent',
+    'success.solidHoverBorder': 'transparent',
+    'success.solidActiveBorder': 'transparent',
+    'success.softBorder': 'transparent',
+    'success.softHoverBorder': 'transparent',
+    'success.softActiveBorder': 'transparent',
+    'success.outlineBorder': 'success.500',
+    'success.outlineHoverBorder': 'success.600',
+    'success.outlineActiveBorder': 'success.700',
+    'success.ghostBorder': 'transparent',
+    'success.ghostHoverBorder': 'transparent',
+    'success.ghostActiveBorder': 'transparent',
+
+    // Warning variant borders
+    'warning.solidBorder': 'transparent',
+    'warning.solidHoverBorder': 'transparent',
+    'warning.solidActiveBorder': 'transparent',
+    'warning.softBorder': 'transparent',
+    'warning.softHoverBorder': 'transparent',
+    'warning.softActiveBorder': 'transparent',
+    'warning.outlineBorder': 'warning.500',
+    'warning.outlineHoverBorder': 'warning.600',
+    'warning.outlineActiveBorder': 'warning.700',
+    'warning.ghostBorder': 'transparent',
+    'warning.ghostHoverBorder': 'transparent',
+    'warning.ghostActiveBorder': 'transparent',
+
+    // Disabled variant borders
+    'disabled.solidBorder': 'transparent',
+    'disabled.softBorder': 'transparent',
+    'disabled.outlineBorder': 'gray.400',
+    'disabled.ghostBorder': 'transparent',
+  },
+  surface: {
+    none: 'none',
+    low: '0 1px 3px rgba(0,0,0,0.12)',
+    medium: '0 4px 6px rgba(0,0,0,0.15)',
+    raised: '0 6px 12px rgba(0,0,0,0.18)',
+    high: '0 12px 24px rgba(0,0,0,0.22)',
+    highest: '0 24px 38px rgba(0,0,0,0.25)',
+  },
+  overlay: {
+    none: 'rgba(0, 0, 0, 0)',
+    low: 'rgba(0, 0, 0, 0.15)',
+    medium: 'rgba(0, 0, 0, 0.3)',
+    raised: 'rgba(0, 0, 0, 0.5)',
+    high: 'rgba(0, 0, 0, 0.7)',
+    highest: 'rgba(0, 0, 0, 0.9)',
+  },
 };

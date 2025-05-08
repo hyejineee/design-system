@@ -1,4 +1,4 @@
-import { color, palette, resolveColorObject, space } from '@ui/theme';
+import { color, palette, space, type Colors, type Palettes } from '@ui/theme';
 import { deepMerge } from '@ui/util/functions';
 import { createThemeContractObject } from '@ui/util/styles';
 import type { PartialDeep, TransformLeafValues } from '@ui/util/types';
@@ -12,31 +12,37 @@ export const createTheme = (theme?: PartialDeep<BaseTheme>) => {
     palette,
   };
 
-  const _merged = deepMerge(baseTheme, theme);
+  const mergedTheme = deepMerge(baseTheme, theme);
 
-  const mergedTheme = {
-    ...baseTheme,
-    color: {
-      bg: resolveColorObject(_merged.color.bg as any, _merged.palette),
-      content: resolveColorObject(_merged.color.content as any, _merged.palette),
-      border: resolveColorObject(_merged.color.border as any, _merged.palette),
-      surface: resolveColorObject(_merged.color.surface as any, _merged.palette),
-      overlay: resolveColorObject(_merged.color.overlay as any, _merged.palette),
-    },
-  };
+  const paletteContract = createThemeContract(
+    mergedTheme.palette as unknown as TransformLeafValues<Palettes, string>
+  );
 
+  ['bg', 'content', 'border'].forEach((semanticKey) => {
+    Object.entries(mergedTheme.color[semanticKey as keyof typeof mergedTheme.color]).forEach(
+      ([key, value]) => {
+        if (typeof value === 'string' && !value.includes('transparent')) {
+          const [token, hex] = value.split('.');
+          //@ts-ignore
+          mergedTheme.color[semanticKey][key] = paletteContract[token][hex];
+        }
+      }
+    );
+  });
+
+  const contract = createThemeContractObject(mergedTheme);
   const themeContract = createThemeContract({
-    ...(createThemeContractObject(mergedTheme) as unknown as TransformLeafValues<
-      BaseTheme,
-      string
-    >),
+    ...(contract as unknown as TransformLeafValues<BaseTheme, string>),
   });
 
   createGlobalTheme(
     ':root',
-    themeContract,
-    mergedTheme as unknown as TransformLeafValues<BaseTheme, string>
+    { ...themeContract, palette: paletteContract },
+    {
+      ...(mergedTheme as unknown as TransformLeafValues<BaseTheme, string>),
+      color: mergedTheme.color as unknown as TransformLeafValues<Colors, string>,
+    }
   );
 
-  return mergedTheme as unknown as BaseTheme;
+  return themeContract as unknown as BaseTheme;
 };
