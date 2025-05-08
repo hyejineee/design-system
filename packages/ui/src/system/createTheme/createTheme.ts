@@ -1,11 +1,4 @@
-import {
-  color,
-  palette,
-  space,
-  type Colors,
-  type SemanticColorToken,
-  type VariantColor,
-} from '@ui/theme';
+import { color, palette, space, type Colors, type Palettes } from '@ui/theme';
 import { deepMerge } from '@ui/util/functions';
 import { createThemeContractObject } from '@ui/util/styles';
 import type { PartialDeep, TransformLeafValues } from '@ui/util/types';
@@ -21,25 +14,21 @@ export const createTheme = (theme?: PartialDeep<BaseTheme>) => {
 
   const mergedTheme = deepMerge(baseTheme, theme);
 
-  console.log('mergedTheme', mergedTheme.color);
-
   const paletteContract = createThemeContract(
-    mergedTheme.palette as unknown as TransformLeafValues<BaseTheme, string>
+    mergedTheme.palette as unknown as TransformLeafValues<Palettes, string>
   );
 
-  Object.entries(mergedTheme.color.variant).forEach(([variantKey, variant]) => {
-    Object.entries(variant).forEach(([key, value]) => {
-      console.log('key', key);
-      console.log('value', value);
-      if (typeof value === 'string' && !value.includes('transparent')) {
-        const [token, hex] = value.split('.');
-        mergedTheme.color.variant[variantKey as SemanticColorToken][key] =
-          paletteContract[token as unknown as VariantColor][hex];
+  ['bg', 'content', 'border'].forEach((semanticKey) => {
+    Object.entries(mergedTheme.color[semanticKey as keyof typeof mergedTheme.color]).forEach(
+      ([key, value]) => {
+        if (typeof value === 'string' && !value.includes('transparent')) {
+          const [token, hex] = value.split('.');
+          //@ts-ignore
+          mergedTheme.color[semanticKey][key] = paletteContract[token][hex];
+        }
       }
-    });
+    );
   });
-
-  console.log('mergedTheme', mergedTheme.color);
 
   const contract = createThemeContractObject(mergedTheme);
   const themeContract = createThemeContract({
@@ -54,8 +43,6 @@ export const createTheme = (theme?: PartialDeep<BaseTheme>) => {
       color: mergedTheme.color as unknown as TransformLeafValues<Colors, string>,
     }
   );
-
-  console.log('themeContract', themeContract);
 
   return themeContract as unknown as BaseTheme;
 };

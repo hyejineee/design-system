@@ -1,94 +1,64 @@
-// import { defineProperties } from '@vanilla-extract/sprinkles';
-// import type {
-//   BgPath,
-//   BorderPath,
-//   Colors,
-//   ContentPath,
-//   HexColorKey,
-//   HexColorType,
-//   InteractType,
-//   PrimitiveColor,
-//   PrimitiveColorUnit,
-// } from './color.type';
-// import { getPaletteColor } from './util';
+import { defineProperties } from '@vanilla-extract/sprinkles';
+import type {
+  BgColorTokenKey,
+  BorderColorTokenKey,
+  Colors,
+  ContentColorTokenKey,
+  ElevationLevel,
+  Palettes,
+  PrimitiveColorTokenKey,
+  SemanticColorTokenKey,
+} from './color.type';
 
-// export const createColorProperties = (colors: Colors, palettes: PrimitiveColor) => {
-//   const contentTokens: Record<ContentPath | PrimitiveColorUnit, string> = {} as Record<
-//     ContentPath | PrimitiveColorUnit,
-//     string
-//   >;
-//   const bgTokens: Record<BgPath | PrimitiveColorUnit, string> = {} as Record<
-//     BgPath | PrimitiveColorUnit,
-//     string
-//   >;
-//   const borderTokens: Record<BorderPath | PrimitiveColorUnit, string> = {} as Record<
-//     BorderPath | PrimitiveColorUnit,
-//     string
-//   >;
+export const createColorProperties = (colors: Colors, palettes: Palettes) => {
+  const paletteTokens = {} as Record<PrimitiveColorTokenKey | SemanticColorTokenKey, string>;
+  const bgTokens = {} as Record<
+    BgColorTokenKey | `surface.${ElevationLevel}` | `overlay.${ElevationLevel}`,
+    string
+  >;
+  const contentTokens = {} as Record<ContentColorTokenKey, string>;
+  const borderTokens = {} as Record<BorderColorTokenKey, string>;
 
-//   (['content', 'bg', 'border'] as const).forEach((semanticKey) => {
-//     const target =
-//       semanticKey === 'content' ? contentTokens : semanticKey === 'bg' ? bgTokens : borderTokens;
+  Object.entries(palettes).forEach(([token, group]) => {
+    Object.entries(group).forEach(([unit, value]) => {
+      const tokenKey = `${token}.${unit}` as keyof typeof paletteTokens;
+      paletteTokens[tokenKey] = value as string;
+    });
+  });
 
-//     const tokenGroup = colors[semanticKey as keyof typeof colors];
+  ['content', 'bg', 'border'].forEach((semanticKey) => {
+    const tokenGroup = colors[semanticKey as keyof typeof colors];
 
-//     Object.entries(tokenGroup).forEach(([key, value]) => {
-//       if (key === 'disable') {
-//         const colorValue = getPaletteColor(value, palettes);
+    Object.entries(tokenGroup).forEach(([key, value]) => {
+      console.log('key', semanticKey, key, value);
+      if (semanticKey === 'content') {
+        const tokenKey = `content.${key}` as keyof typeof contentTokens;
+        contentTokens[tokenKey] = value;
+      }
 
-//         if (colorValue) {
-//           Object.assign(target, { [`${semanticKey}.disable`]: colorValue });
-//         }
-//         return;
-//       }
+      if (semanticKey === 'bg') {
+        const tokenKey = `bg.${key}` as keyof typeof bgTokens;
+        bgTokens[tokenKey] = value;
+      }
 
-//       ['default', 'inverse', 'subtle'].forEach((status) => {
-//         const colorValue = getPaletteColor(value[status], palettes);
-//         if (colorValue) {
-//           Object.assign(target, { [`${semanticKey}.${key}.${status}`]: colorValue });
-//         }
-//       });
+      if (semanticKey === 'border') {
+        const tokenKey = `border.${key}` as keyof typeof borderTokens;
+        borderTokens[tokenKey] = value;
+      }
+    });
+  });
 
-//       if (value.interact) {
-//         const interactColors: InteractType = value.interact;
-//         (Object.entries(interactColors) as Array<[keyof InteractType, PrimitiveColorUnit]>).forEach(
-//           ([interactKey, interactValue]) => {
-//             const colorValue = getPaletteColor(interactValue, palettes);
-//             if (colorValue) {
-//               Object.assign(target, {
-//                 [`${semanticKey}.${key}.interact.${interactKey}`]: colorValue,
-//               });
-//             }
-//           }
-//         );
-//       }
-//     });
-//   });
+  const colorProperties = defineProperties({
+    properties: {
+      color: { ...contentTokens, ...paletteTokens },
+      backgroundColor: { ...bgTokens, ...paletteTokens },
+      borderColor: { ...borderTokens, ...paletteTokens },
+    },
+    shorthands: {
+      bgColor: ['backgroundColor'],
+      brColor: ['borderColor'],
+    },
+  });
 
-//   // palettes 컬러 추가
-//   (Object.entries(palettes) as Array<[keyof PrimitiveColor, HexColorType]>).forEach(
-//     ([paletteKey, shades]) => {
-//       (Object.entries(shades) as Array<[HexColorKey, string]>).forEach(([shade, hexValue]) => {
-//         const tokeKey = `${paletteKey}.${shade}`;
-
-//         Object.assign(contentTokens, { [tokeKey]: hexValue });
-//         Object.assign(bgTokens, { ...bgTokens, [tokeKey]: hexValue });
-//         Object.assign(borderTokens, { [tokeKey]: hexValue });
-//       });
-//     }
-//   );
-
-//   const colorProperties = defineProperties({
-//     properties: {
-//       color: contentTokens,
-//       backgroundColor: bgTokens,
-//       borderColor: borderTokens,
-//     },
-//     shorthands: {
-//       bgColor: ['backgroundColor'],
-//       brColor: ['borderColor'],
-//     },
-//   });
-
-//   return colorProperties;
-// };
+  return colorProperties;
+};

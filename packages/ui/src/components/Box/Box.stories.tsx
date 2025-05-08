@@ -11,8 +11,8 @@ type Story = StoryObj<typeof Box>;
 
 export const Primary: Story = {
   args: {
-    bgColor: 'bg.info.subtle',
-    color: 'blue.100',
+    bgColor: 'bg.error',
+    color: 'content.primary',
     children: 'BOX',
     flexCenter: true,
   },
