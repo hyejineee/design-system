@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Row>;
 
 export const Primary: Story = {
   args: {
-    bgColor: 'bg.info.subtle',
+    bgColor: 'bg.error',
     color: 'blue.100',
     children: 'BOX',
     gap: 8,
@@ -23,13 +23,13 @@ export const Primary: Story = {
   render: (args) => {
     return (
       <Row {...args}>
-        <Box p={4} bgColor='bg.error.default'>
+        <Box p={4} bgColor='bg.error'>
           Box 1
         </Box>
-        <Box p={4} bgColor='bg.success.default'>
+        <Box p={4} bgColor='bg.success'>
           Box 2
         </Box>
-        <Box p={4} bgColor='bg.info.default'>
+        <Box p={4} bgColor='bg.info'>
           Box 3
         </Box>
       </Row>

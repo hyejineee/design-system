@@ -13,12 +13,17 @@ export const Column = <T extends ElementType = 'div'>(props: PolymorphicProps<T,
   const styleConfig = getThemeConfig();
   const { styleProps, restProps } = splitStyleProps(rest, styleConfig.sprinkles);
 
+  console.log('styleProps', styleProps);
+  console.log('sprinkles', styleConfig.sprinkles({ gap: 16 }));
+
   const baseStyles = {
     display: 'flex',
     flexDirection: 'column',
   } as const;
 
   const finalClassName = clsx(styleConfig.sprinkles({ ...baseStyles, ...styleProps }), className);
+
+  console.log('finalClassName', finalClassName);
 
   return <Element ref={ref} {...restProps} className={finalClassName} />;
 };

@@ -1,1 +1,1 @@
-export type SizeKey = '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type SizeKey = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';

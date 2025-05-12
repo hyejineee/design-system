@@ -39,6 +39,6 @@
       "@ui/util/*": ["util/*"]
     }
   },
-  "include": ["src", "style.config.ts"],
+  "include": ["src", "style.config.css.ts", "style.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

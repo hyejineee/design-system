@@ -1,6 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import { pathToFileURL } from 'node:url';
 import { dirname, join, resolve } from 'path';
-import { mergeConfig } from 'vite';
+import { mergeConfig, type ViteDevServer } from 'vite';
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -12,6 +13,46 @@ function getAbsolutePath(value: string): any {
 
 // 현재 디렉토리를 기준으로 상대 경로를 절대 경로로 변환
 const resolveRoot = (dir: string) => resolve(__dirname, '..', dir);
+const styleConfigAbsolutePath = resolveRoot('style.config.css.ts');
+
+const runStyleConfigPlugin = () => {
+  return {
+    name: 'run-style-config-early',
+    configureServer: async (server: ViteDevServer) => {
+      console.log(
+        `[Vite Plugin - Dev] configureServer 훅 시작. ${styleConfigAbsolutePath} 실행 시도.`
+      );
+      try {
+        await server.ssrLoadModule(styleConfigAbsolutePath);
+        console.log(
+          `[Vite Plugin - Dev] 성공: ${styleConfigAbsolutePath} 를 ssrLoadModule로 실행했습니다.`
+        );
+      } catch (error) {
+        console.error(
+          `[Vite Plugin - Dev] 오류: ${styleConfigAbsolutePath} 를 ssrLoadModule로 실행 중 에러 발생:`,
+          error
+        );
+      }
+    },
+    buildStart: async () => {
+      console.log(
+        `[Vite Plugin - Build] buildStart 훅 시작. ${styleConfigAbsolutePath} 실행 시도.`
+      );
+      try {
+        const styleConfigModuleFileUrl = pathToFileURL(styleConfigAbsolutePath).href;
+        await import(styleConfigModuleFileUrl);
+        console.log(
+          `[Vite Plugin - Build] 성공: ${styleConfigAbsolutePath} 를 동적 import로 실행했습니다.`
+        );
+      } catch (error) {
+        console.error(
+          `[Vite Plugin - Build] 오류: ${styleConfigAbsolutePath} 를 동적 import로 실행 중 에러 발생. Node.js가 .ts 확장자를 직접 처리하도록 설정되지 않았을 수 있습니다. 에러 상세:`,
+          error
+        );
+      }
+    },
+  };
+};
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -45,6 +86,7 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     return mergeConfig(config, {
+      // plugins: [runStyleConfigPlugin()],
       resolve: {
         alias: {
           '@ui/types': resolveRoot('src/types'),
@@ -54,7 +96,7 @@ const config: StorybookConfig = {
         },
       },
       optimizeDeps: {
-        include: [...(config.optimizeDeps?.include || []), '../style.config.ts'],
+        exclude: [...(config.optimizeDeps?.exclude || []), resolveRoot('style.config.css.ts')],
       },
     });
   },

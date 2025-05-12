@@ -26,6 +26,7 @@ export const createLayoutProperties = (space: Spaces) => {
       marginBottom: space,
       marginLeft: space,
       marginRight: space,
+      borderRadius: space,
     },
     shorthands: {
       p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
@@ -43,6 +44,7 @@ export const createLayoutProperties = (space: Spaces) => {
       ml: ['marginLeft'],
       mr: ['marginRight'],
       placeItems: ['justifyContent', 'alignItems'],
+      br: ['borderRadius'],
     },
     conditions: {
       mobile: {},

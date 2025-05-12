@@ -1,6 +1,5 @@
 import { baseSprinkles } from '@ui/theme/baseSprinkles.css';
 import { baseTheme } from '@ui/theme/baseTheme.css';
-import { deepMerge } from '@ui/util/functions';
 import type { BaseTheme } from '../createTheme/types';
 import type { createThemeSprinkles } from '../createThemeSprinkles/createThemSprinkles';
 
@@ -11,14 +10,17 @@ export interface ThemeConfig {
 
 let currentConfig: ThemeConfig | null = null;
 
-export const setThemeConfig = (config?: Partial<ThemeConfig>) => {
+export const setThemeConfig = (config?: ThemeConfig) => {
+  console.log('setThemeConfig');
+
   const defaultConfig: ThemeConfig = {
     theme: baseTheme as unknown as BaseTheme,
     sprinkles: baseSprinkles,
   };
 
-  const merged = deepMerge(defaultConfig, config);
-  currentConfig = merged;
+  if (!config) return defaultConfig;
+
+  currentConfig = config;
 };
 
 export const getThemeConfig = (): ThemeConfig => {

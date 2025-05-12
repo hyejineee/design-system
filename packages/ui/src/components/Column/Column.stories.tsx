@@ -15,20 +15,20 @@ export const Primary: Story = {
   args: {
     gap: 8,
     p: 16,
-    bgColor: 'bg.primary.inverse',
+    bgColor: 'bg.primary',
   },
 
   render: (args) => {
     // Column 레이아웃을 보여주는 예시
     return (
       <Column {...args}>
-        <Box p={4} bgColor='bg.error.default'>
+        <Box p={4} bgColor='bg.error'>
           Box 1
         </Box>
-        <Box p={4} bgColor='bg.success.default'>
+        <Box p={4} bgColor='bg.success'>
           Box 2
         </Box>
-        <Box p={4} bgColor='bg.info.default'>
+        <Box p={4} bgColor='bg.info'>
           Box 3
         </Box>
       </Column>

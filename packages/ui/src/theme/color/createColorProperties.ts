@@ -30,7 +30,6 @@ export const createColorProperties = (colors: Colors, palettes: Palettes) => {
     const tokenGroup = colors[semanticKey as keyof typeof colors];
 
     Object.entries(tokenGroup).forEach(([key, value]) => {
-      console.log('key', semanticKey, key, value);
       if (semanticKey === 'content') {
         const tokenKey = `content.${key}` as keyof typeof contentTokens;
         contentTokens[tokenKey] = value;

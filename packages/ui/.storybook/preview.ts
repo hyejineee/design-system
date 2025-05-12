@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
-import '../style.config.ts'; // style.config.ts를 가장 먼저 import
+import '../style.config.css.ts';
+import '../style.config.ts';
 
 const preview: Preview = {
   parameters: {
